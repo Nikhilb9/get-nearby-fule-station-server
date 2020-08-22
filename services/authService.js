@@ -53,7 +53,7 @@ class AuthService {
 		} catch (err) {
 			if (err.statusCode === 404) {
 				err = nikhilError(
-					stringConstants.authServiceMessage.UNAUTHORIZED_CLIENT,
+					stringConstant.authServiceMessage.UNAUTHORIZED_CLIENT,
 					401,
 					1000
 				);
@@ -66,7 +66,7 @@ class AuthService {
 			if (!req.headers["token"]) {
 				next(
 					nikhilError(
-						templateConstants.PARAMETER_MISSING("Header: Token"),
+						templateConstant.PARAMETER_MISSING("Header: Token"),
 						401,
 						1000
 					)
@@ -83,17 +83,13 @@ class AuthService {
 			if (tokenInRedis === req.headers["token"]) {
 				next();
 			} else {
-				throw nikhilError(
-					templateConstants.INVALID("Header: Token"),
-					401,
-					1000
-				);
+				throw nikhilError(templateConstant.INVALID("Header: Token"), 401, 1000);
 			}
 		} catch (err) {
 			let error = err;
 			if (err.statusCode === 400) {
 				error = nikhilError(
-					templateConstants.INVALID("Header: Token"),
+					templateConstant.INVALID("Header: Token"),
 					401,
 					1000
 				);

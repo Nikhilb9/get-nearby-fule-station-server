@@ -18,7 +18,6 @@ class UserDAO {
 	}
 
 	async getUserWithUserIdAndRoleId(userId, userRoleId) {
-		console.log(userId, userRoleId);
 		return await models.user.findOne({
 			where: { id: userId, userRoleId: userRoleId },
 		});
@@ -124,7 +123,6 @@ class UserDAO {
 				],
 			});
 		} catch (err) {
-			console.log(err);
 			throw err;
 		}
 	}
